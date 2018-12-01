@@ -24,7 +24,7 @@ This is the first version of Hyper API. So you have to add `v1/` before each end
 
 ```shell
 # With shell, you can just pass the header with each request
-curl "api_endpoint_here"
+curl "api_endpoint_here" \
   -H "Authorization: Bearer meowmeowmeow"
 ```
 
@@ -45,8 +45,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 ## Enter a user
 
 ```shell
-curl "http://hyperserver.ir/users/enter"
-  -H "Authorization: meowmeowmeow"
+curl "http://hyperserver.ir/v1/users/enter" \
   -d "phone=9127591234&pusheId=pid_20aa-ba40-a0"
 ```
 
@@ -59,18 +58,18 @@ curl "http://hyperserver.ir/users/enter"
 }
 ```
 
-This endpoint sends a sms containing a 6-digit code to user's phone number.
+This endpoint sends an SMS containing a 6-digit code to user's phone number.
 
 ### HTTP Request
 
-`POST http://hyperserver.ir/users/enter`
+`POST http://hyperserver.ir/v1/users/enter`
 
 ### Body Parameters
 
-Parameter | Type | Example | Description
---------- | ---- | ------- | -----------
-phone | number | 9127591234 | User's phone number.
-pusheId | string | pid_20aa-ba40-a0 | The pushe id of user's device.
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+phone | number | 9127591234 | true | User's phone number.
+pusheId | string | pid_20aa-ba40-a0 | true | The pushe id of user's device.
 
 <aside class="warning">
 Remember — phone number must not have +98, 0098 or 09..
@@ -83,106 +82,287 @@ Status Code | Description
 422 | When the phone number is invalid.
 200 | When everything is OK.
 
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+## Login a user
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+curl "http://hyperserver.ir/v1/users/login" \
+  -d "phone=9127591293&code=123456"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "password": true
 }
 ```
 
-This endpoint retrieves a specific kitten.
+> And if the account doesn't have a password:
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+```json
+{
+  "password": false,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YmQzMTI2MDIzNjkwOTE3ODdjZDI4OWIiLCJpYXQiOjE1NDA1NTk0ODF9.oTLpPdXISHizlxXzbpiZzmcORZQLXx-RAl2OICSl1hQ"
+}
+```
+
+This endpoint checks the 6-digit code that is sent to your phone number and if it was correct, responses with a JWT token.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`POST http://hyperserver.ir/v1/users/login`
 
-### URL Parameters
+### Body Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+phone | number | 9127591234 | true | User's phone number.
+code | number | 123456 | true | The unique code.
 
-## Delete a Specific Kitten
+<aside class="warning">
+Remember — phone number must not have +98, 0098 or 09..
+</aside>
 
-```ruby
-require 'kittn'
+### Responses
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
+Status Code | Description
+----------- | -----------
+400 | When the code is invalid.
+200 | When everything is OK.
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
+## Enter user's password to login
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
+curl "http://hyperserver.ir/v1/users/password" \
+  -d "code=123456&phone=9127591284&password=abcdefghi"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YmQzMTI2MDIzNjkwOTE3ODdjZDI4OWIiLCJpYXQiOjE1NDA1NTk0ODF9.oTLpPdXISHizlxXzbpiZzmcORZQLXx-RAl2OICSl1hQ"
 }
 ```
 
-This endpoint deletes a specific kitten.
+This endpoint checks the password of the account and if it was true, it will respond with a JWT token.
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`POST http://hyperserver.ir/v1/users/password`
 
-### URL Parameters
+### Body Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+phone | number | 9127591234 | true | User's phone number.
+code | number | 123456 | true | The unique code.
+password | string | P@ssw0rD | true | The account's password
+
+<aside class="warning">
+Remember — phone number must not have +98, 0098 or 09..
+</aside>
+
+### Responses
+
+Status Code | Description
+----------- | -----------
+400 | When the code is invalid.
+400 | When the password is incorrect.
+200 | When everything is OK.
+
+## Resend the verification code
+
+```shell
+curl "http://hyperserver.ir/v1/users/resend" \
+  -d "phone=9127591234"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+}
+```
+
+This endpoint sends another OTP code to user's phone number.
+
+### HTTP Request
+
+`POST http://hyperserver.ir/v1/users/resend`
+
+### Body Parameters
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+phone | number | 9127591234 | true | User's phone number.
+
+<aside class="warning">
+Remember — phone number must not have +98, 0098 or 09..
+</aside>
+
+### Responses
+
+Status Code | Description
+----------- | -----------
+204 | When everything is OK.
+
+## Delete a user
+
+```shell
+curl "http://hyperserver.ir/v1/users" \
+  -H "Authorization: Bearer meowmeowmeow" \
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+}
+```
+
+This endpoint delete the user and it's relations in the application.
+
+### HTTP Request
+
+`DELETE http://hyperserver.ir/v1/users`
+
+### Responses
+
+Status Code | Description
+----------- | -----------
+204 | When everything is OK.
+
+## Check the JWT token
+
+```shell
+curl "http://hyperserver.ir/v1/users/tokens/check" \
+  -H "Authorization: Bearer meowmeowmeow" \
+  -d "phone=9127591234"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "_id": "5bd312602369091787cd289b"
+}
+```
+
+This endpoint checks the JWT token.
+
+### HTTP Request
+
+`POST http://hyperserver.ir/v1/users/tokens/check`
+
+### Body Parameters
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+phone | number | 9127591234 | true | User's phone number.
+
+<aside class="warning">
+Remember — phone number must not have +98, 0098 or 09..
+</aside>
+
+### Responses
+
+Status Code | Description
+----------- | -----------
+401 | When the JWT token is wrong.
+200 | When everything is OK.
+
+## Delete the JWT token
+
+```shell
+curl "http://hyperserver.ir/v1/users/tokens" \
+  -H "Authorization: Bearer meowmeowmeow"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+}
+```
+
+This endpoint deletes the JWT token.
+
+### HTTP Request
+
+`DELETE http://hyperserver.ir/v1/users/tokens/`
+
+### Responses
+
+Status Code | Description
+----------- | -----------
+204 | When everything is OK.
+
+## Change user's name
+
+```shell
+curl "http://hyperserver.ir/v1/users/settings/name" \
+  -H "Authorization: Bearer meowmeowmeow" \
+  -d "name=abcdefghi"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+}
+```
+
+This endpoint changes the name of the user.
+
+### HTTP Request
+
+`PATCH http://hyperserver.ir/v1/users/settings/name`
+
+### Body Parameters
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+name | string | Ahmad | true | The account's name
+
+### Responses
+
+Status Code | Description
+----------- | -----------
+204 | When everything is OK.
+
+## Change user's password
+
+```shell
+curl "http://hyperserver.ir/v1/users/settings/password" \
+  -H "Authorization: Bearer meowmeowmeow" \
+  -d "oldPassword=1234&newPassword=4321&passwordHint=something"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+}
+```
+
+This endpoint changes the password and password hint of the user.
+
+### HTTP Request
+
+`PATCH http://hyperserver.ir/v1/users/settings/password`
+
+### Body Parameters
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+newPassword | string | somethingCool | true | The account's new password
+oldPassword | setting | somethingOld | false | The account's old password
+passwordHint | string | rememberYourFather | false | Passsword Hint
+
+### Responses
+
+Status Code | Description
+----------- | -----------
+400 | When the old password is incorrect
+204 | When everything is OK.
