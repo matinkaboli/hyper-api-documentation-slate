@@ -482,3 +482,160 @@ Status Code | Description
 ----------- | -----------
 404 | When the shelf is not found.
 200 | When everything is OK.
+
+# Shops
+
+## Create a shop
+
+```shell
+curl "http://hyperserver.ir/v1/shops" \
+  -H "Authorization: Bearer meowmeowmeow" \
+  -d "name=newName"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+}
+```
+
+This endpoint creates a new shop.
+
+### HTTP Request
+
+`POST http://hyperserver.ir/v1/shops`
+
+### Body Parameters
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+lat | float | 35.2 | true | Shop's latitude
+lng | float | 50 | true | Shop's longtitude
+name | string | Forooshgah | true | Shop's name
+address | string | here | false | Shop's address
+description | string | One Product | false | Shop's description
+minimumOrderPrice | integer | 20000 | true | Shop's minimum order price
+maximumDeliveryTime | integer | 30 | true | Shop's maximum delivery time
+
+### Responses
+
+Status Code | Description
+----------- | -----------
+201 | When everything is OK.
+
+## Update a shop
+
+```shell
+curl "http://hyperserver.ir/v1/shops/:shopId" \
+  -H "Authorization: Bearer meowmeowmeow" \
+  -d "name=newName"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+}
+```
+
+This endpoint updates the specified shop.
+
+### HTTP Request
+
+`PATCH http://hyperserver.ir/v1/shops`
+
+### Query Parameteres
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+shopId | string | 395746irfhjdhgf | true | Shop's id
+
+### Body Parameters
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+lat | float | 35.2 | true | Shop's latitude
+lng | float | 50 | true | Shop's longtitude
+name | string | Forooshgah | true | Shop's name
+address | string | here | false | Shop's address
+username | string | irtn34545fgf | false | Shop's username
+description | string | One Product | false | Shop's description
+minimumOrderPrice | integer | 20000 | true | Shop's minimum order price
+maximumDeliveryTime | integer | 30 | true | Shop's maximum delivery time
+
+### Responses
+
+Status Code | Description
+----------- | -----------
+404 | When shop is not found.
+200 | When everything is OK.
+
+## Delete a shop
+
+```shell
+curl "http://hyperserver.ir/v1/shops/:shopId" \
+  -H "Authorization: Bearer meowmeowmeow" \
+  -d "name=newName"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+}
+```
+
+This endpoint deletes the specified shop.
+
+### HTTP Request
+
+`DELETE http://hyperserver.ir/v1/shops/:shopId`
+
+### Query Parameteres
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+shopId | string | 395746irfhjdhgf | true | Shop's id
+
+### Responses
+
+Status Code | Description
+----------- | -----------
+404 | When shop is not found.
+200 | When everything is OK.
+
+## Follow a shop
+
+```shell
+curl "http://hyperserver.ir/v1/shops/:shopId/follow" \
+  -H "Authorization: Bearer meowmeowmeow" \
+  -d "name=newName"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+}
+```
+
+This endpoint let the user follow the specified shop.
+
+### HTTP Request
+
+`POST http://hyperserver.ir/v1/shops/:shopId/follow`
+
+### Query Parameteres
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+shopId | string | 395746irfhjdhgf | true | Shop's id
+
+### Responses
+
+Status Code | Description
+----------- | -----------
+404 | When shop is not found.
+200 | When you have already followed thea shop.
+201 | When everything is OK.
