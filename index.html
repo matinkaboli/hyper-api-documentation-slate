@@ -257,6 +257,37 @@
               </ul>
           </li>
           <li>
+            <a href="#shelves" class="toc-h1 toc-link" data-title="Shelves">Shelves</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-a-shelf" class="toc-h2 toc-link" data-title="Create a shelf">Create a shelf</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-shelf" class="toc-h2 toc-link" data-title="Delete a shelf">Delete a shelf</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-shelf" class="toc-h2 toc-link" data-title="Update a shelf">Update a shelf</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#shops" class="toc-h1 toc-link" data-title="Shops">Shops</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-a-shop" class="toc-h2 toc-link" data-title="Create a shop">Create a shop</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-shop" class="toc-h2 toc-link" data-title="Update a shop">Update a shop</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-shop" class="toc-h2 toc-link" data-title="Delete a shop">Delete a shop</a>
+                  </li>
+                  <li>
+                    <a href="#follow-a-shop" class="toc-h2 toc-link" data-title="Follow a shop">Follow a shop</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
       </ul>
@@ -730,6 +761,513 @@ Remember — phone number must not have +98, 0098 or 09..
 </tr>
 <tr>
 <td>204</td>
+<td>When everything is OK.</td>
+</tr>
+</tbody></table>
+<h1 id='shelves'>Shelves</h1><h2 id='create-a-shelf'>Create a shelf</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://hyperserver.ir/v1/shelves"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span> <span class="se">\</span>
+  -d <span class="s2">"name=oneshelf"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a new shelf.</p>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>POST http://hyperserver.ir/v1/shelves</code></p>
+<h3 id='body-parameters-8'>Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Mahsool</td>
+<td>true</td>
+<td>The shelf&#39;s name</td>
+</tr>
+<tr>
+<td>isbn</td>
+<td>string</td>
+<td>123-456-789-0</td>
+<td>false</td>
+<td>The shelf&#39;s ISBN</td>
+</tr>
+<tr>
+<td>expiration</td>
+<td>string</td>
+<td>2 days from now</td>
+<td>false</td>
+<td>The shelf&#39;s expiration time</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>One Product</td>
+<td>false</td>
+<td>The shelf&#39;s description</td>
+</tr>
+<tr>
+<td>manufacturer</td>
+<td>string</td>
+<td>Pegah</td>
+<td>false</td>
+<td>The shelf&#39;s manufacturer</td>
+</tr>
+</tbody></table>
+<h3 id='responses-10'>Responses</h3>
+<table><thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td>When everything is OK.</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-shelf'>Delete a shelf</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://hyperserver.ir/v1/shelves/:shelfId"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span> <span class="se">\</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes the specified shelf.</p>
+<h3 id='http-request-11'>HTTP Request</h3>
+<p><code>DELETE http://hyperserver.ir/v1/shelves/:shelfId</code></p>
+<h3 id='query-parameteres'>Query Parameteres</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>shelfId</td>
+<td>string</td>
+<td>395746irfhjdhgf</td>
+<td>true</td>
+<td>Shelf&#39;s id</td>
+</tr>
+</tbody></table>
+<h3 id='responses-11'>Responses</h3>
+<table><thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>When the shelf is not found.</td>
+</tr>
+<tr>
+<td>204</td>
+<td>When everything is OK.</td>
+</tr>
+</tbody></table>
+<h2 id='update-a-shelf'>Update a shelf</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://hyperserver.ir/v1/shelves/:shelfId"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span> <span class="se">\</span>
+  -d <span class="s2">"name=newName"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint updates a shelf.</p>
+<h3 id='http-request-12'>HTTP Request</h3>
+<p><code>PATCH http://hyperserver.ir/v1/shelves/:shelfId</code></p>
+<h3 id='query-parameteres-2'>Query Parameteres</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>shelfId</td>
+<td>string</td>
+<td>395746irfhjdhgf</td>
+<td>true</td>
+<td>Shelf&#39;s id</td>
+</tr>
+</tbody></table>
+<h3 id='body-parameters-9'>Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Mahsool</td>
+<td>true</td>
+<td>The shelf&#39;s name</td>
+</tr>
+<tr>
+<td>isbn</td>
+<td>string</td>
+<td>123-456-789-0</td>
+<td>false</td>
+<td>The shelf&#39;s ISBN</td>
+</tr>
+<tr>
+<td>expiration</td>
+<td>string</td>
+<td>2 days from now</td>
+<td>false</td>
+<td>The shelf&#39;s expiration time</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>One Product</td>
+<td>false</td>
+<td>The shelf&#39;s description</td>
+</tr>
+<tr>
+<td>manufacturer</td>
+<td>string</td>
+<td>Pegah</td>
+<td>false</td>
+<td>The shelf&#39;s manufacturer</td>
+</tr>
+</tbody></table>
+<h3 id='responses-12'>Responses</h3>
+<table><thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>When the shelf is not found.</td>
+</tr>
+<tr>
+<td>200</td>
+<td>When everything is OK.</td>
+</tr>
+</tbody></table>
+<h1 id='shops'>Shops</h1><h2 id='create-a-shop'>Create a shop</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://hyperserver.ir/v1/shops"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span> <span class="se">\</span>
+  -d <span class="s2">"name=newName"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a new shop.</p>
+<h3 id='http-request-13'>HTTP Request</h3>
+<p><code>POST http://hyperserver.ir/v1/shops</code></p>
+<h3 id='body-parameters-10'>Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>lat</td>
+<td>float</td>
+<td>35.2</td>
+<td>true</td>
+<td>Shop&#39;s latitude</td>
+</tr>
+<tr>
+<td>lng</td>
+<td>float</td>
+<td>50</td>
+<td>true</td>
+<td>Shop&#39;s longtitude</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Forooshgah</td>
+<td>true</td>
+<td>Shop&#39;s name</td>
+</tr>
+<tr>
+<td>address</td>
+<td>string</td>
+<td>here</td>
+<td>false</td>
+<td>Shop&#39;s address</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>One Product</td>
+<td>false</td>
+<td>Shop&#39;s description</td>
+</tr>
+<tr>
+<td>minimumOrderPrice</td>
+<td>integer</td>
+<td>20000</td>
+<td>true</td>
+<td>Shop&#39;s minimum order price</td>
+</tr>
+<tr>
+<td>maximumDeliveryTime</td>
+<td>integer</td>
+<td>30</td>
+<td>true</td>
+<td>Shop&#39;s maximum delivery time</td>
+</tr>
+</tbody></table>
+<h3 id='responses-13'>Responses</h3>
+<table><thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td>When everything is OK.</td>
+</tr>
+</tbody></table>
+<h2 id='update-a-shop'>Update a shop</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://hyperserver.ir/v1/shops/:shopId"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span> <span class="se">\</span>
+  -d <span class="s2">"name=newName"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint updates the specified shop.</p>
+<h3 id='http-request-14'>HTTP Request</h3>
+<p><code>PATCH http://hyperserver.ir/v1/shops</code></p>
+<h3 id='query-parameteres-3'>Query Parameteres</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>shopId</td>
+<td>string</td>
+<td>395746irfhjdhgf</td>
+<td>true</td>
+<td>Shop&#39;s id</td>
+</tr>
+</tbody></table>
+<h3 id='body-parameters-11'>Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>lat</td>
+<td>float</td>
+<td>35.2</td>
+<td>true</td>
+<td>Shop&#39;s latitude</td>
+</tr>
+<tr>
+<td>lng</td>
+<td>float</td>
+<td>50</td>
+<td>true</td>
+<td>Shop&#39;s longtitude</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Forooshgah</td>
+<td>true</td>
+<td>Shop&#39;s name</td>
+</tr>
+<tr>
+<td>address</td>
+<td>string</td>
+<td>here</td>
+<td>false</td>
+<td>Shop&#39;s address</td>
+</tr>
+<tr>
+<td>username</td>
+<td>string</td>
+<td>irtn34545fgf</td>
+<td>false</td>
+<td>Shop&#39;s username</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>One Product</td>
+<td>false</td>
+<td>Shop&#39;s description</td>
+</tr>
+<tr>
+<td>minimumOrderPrice</td>
+<td>integer</td>
+<td>20000</td>
+<td>true</td>
+<td>Shop&#39;s minimum order price</td>
+</tr>
+<tr>
+<td>maximumDeliveryTime</td>
+<td>integer</td>
+<td>30</td>
+<td>true</td>
+<td>Shop&#39;s maximum delivery time</td>
+</tr>
+</tbody></table>
+<h3 id='responses-14'>Responses</h3>
+<table><thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>When shop is not found.</td>
+</tr>
+<tr>
+<td>200</td>
+<td>When everything is OK.</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-shop'>Delete a shop</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://hyperserver.ir/v1/shops/:shopId"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span> <span class="se">\</span>
+  -d <span class="s2">"name=newName"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes the specified shop.</p>
+<h3 id='http-request-15'>HTTP Request</h3>
+<p><code>DELETE http://hyperserver.ir/v1/shops/:shopId</code></p>
+<h3 id='query-parameteres-4'>Query Parameteres</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>shopId</td>
+<td>string</td>
+<td>395746irfhjdhgf</td>
+<td>true</td>
+<td>Shop&#39;s id</td>
+</tr>
+</tbody></table>
+<h3 id='responses-15'>Responses</h3>
+<table><thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>When shop is not found.</td>
+</tr>
+<tr>
+<td>200</td>
+<td>When everything is OK.</td>
+</tr>
+</tbody></table>
+<h2 id='follow-a-shop'>Follow a shop</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://hyperserver.ir/v1/shops/:shopId/follow"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span> <span class="se">\</span>
+  -d <span class="s2">"name=newName"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint let the user follow the specified shop.</p>
+<h3 id='http-request-16'>HTTP Request</h3>
+<p><code>POST http://hyperserver.ir/v1/shops/:shopId/follow</code></p>
+<h3 id='query-parameteres-5'>Query Parameteres</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>shopId</td>
+<td>string</td>
+<td>395746irfhjdhgf</td>
+<td>true</td>
+<td>Shop&#39;s id</td>
+</tr>
+</tbody></table>
+<h3 id='responses-16'>Responses</h3>
+<table><thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>When shop is not found.</td>
+</tr>
+<tr>
+<td>200</td>
+<td>When you have already followed thea shop.</td>
+</tr>
+<tr>
+<td>201</td>
 <td>When everything is OK.</td>
 </tr>
 </tbody></table>
