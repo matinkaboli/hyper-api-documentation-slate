@@ -609,8 +609,7 @@ Status Code | Description
 
 ```shell
 curl "http://hyperserver.ir/v1/shops/:shopId/follow" \
-  -H "Authorization: Bearer meowmeowmeow" \
-  -d "name=newName"
+  -H "Authorization: Bearer meowmeowmeow"
 ```
 
 > The above command returns JSON structured like this:
@@ -637,5 +636,203 @@ shopId | string | 395746irfhjdhgf | true | Shop's id
 Status Code | Description
 ----------- | -----------
 404 | When shop is not found.
-200 | When you have already followed thea shop.
+200 | When you have already followed the shop.
 201 | When everything is OK.
+
+## Unfollow a shop
+
+```shell
+curl "http://hyperserver.ir/v1/shops/:shopId/follow" \
+  -H "Authorization: Bearer meowmeowmeow"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+}
+```
+
+This endpoint let the user unfollow the specified shop.
+
+### HTTP Request
+
+`DELETE http://hyperserver.ir/v1/shops/:shopId/follow`
+
+### Query Parameteres
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+shopId | string | 395746irfhjdhgf | true | Shop's id
+
+### Responses
+
+Status Code | Description
+----------- | -----------
+404 | When shop is not found.
+200 | When you have already unfollowed the shop.
+201 | When everything is OK.
+
+## Add a photo for a shop
+
+```shell
+curl "http://hyperserver.ir/v1/shops/:shopId/photo" \
+  -H "Authorization: Bearer meowmeowmeow"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+}
+```
+
+This endpoint adds an image to the specified shop.
+
+### HTTP Request
+
+`POST http://hyperserver.ir/v1/shops/:shopId/photo`
+
+### Query Parameteres
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+shopId | string | 395746irfhjdhgf | true | Shop's id
+
+### Body Parameters
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+photo | file | PNG file | true | Shop's photo
+
+### Responses
+
+Status Code | Description
+----------- | -----------
+404 | When shop is not found.
+201 | When everything is OK.
+
+## Remove a photo for a shop
+
+```shell
+curl "http://hyperserver.ir/v1/shops/:shopId/photo/:photoId" \
+  -H "Authorization: Bearer meowmeowmeow"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+}
+```
+
+This endpoint removes an image from the specified shop.
+
+### HTTP Request
+
+`DELETE http://hyperserver.ir/v1/shops/:shopId/photo/:photoId`
+
+### Query Parameteres
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+shopId | string | 395746irfhjdhgf | true | Shop's id
+photoId | string | 395746irfhjdhgf | true | Photo's id
+
+### Responses
+
+Status Code | Description
+----------- | -----------
+404 | When shop is not found.
+404 | When photo is not found.
+200 | When everything is OK.
+
+# Orders
+
+## Create a new order
+
+```shell
+curl "http://hyperserver.ir/v1/shops/:shopId/orders" \
+  -H "Authorization: Bearer meowmeowmeow" \
+  -d "name=newName"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+}
+```
+
+This endpoint creates a new order for the specified shop.
+
+### HTTP Request
+
+`POST http://hyperserver.ir/v1/shops/:shopId/orders`
+
+### Query Parameteres
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+shopId | string | 395746irfhjdhgf | true | Shop's id
+
+### Body Parameters
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+lat | float | 35.2 | true | Order's latitude
+lng | float | 50 | true | Order's longtitude
+time | string | Tomorrow | true | Order's time
+address | string | here | true | Order's address
+items | JSON | `{ "items": [{count: 5, showcase: "khkghkf"}, {}, {}] }` | true | Order's items
+
+### Responses
+
+Status Code | Description
+----------- | -----------
+404 | When shop is not found.
+404 | When a showcase ID is not found in the items property.
+403 | User must follow the shop in order to create orders.
+201 | When everything is OK.
+
+## Update a status of an order
+
+```shell
+curl "http://hyperserver.ir/v1/shops/:shopId/orders/:orderId/status" \
+  -H "Authorization: Bearer meowmeowmeow" \
+  -d "name=newName"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+}
+```
+
+This endpoint creates a new order for the specified shop.
+
+### HTTP Request
+
+`PATCH http://hyperserver.ir/v1/shops/:shopId/orders/:orderId/status`
+
+### Query Parameteres
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+shopId | string | 395746irfhjdhgf | true | Shop's id
+orderId | string | 395746irfhjdhgf | true | Order's id
+
+### Body Parameters
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+status | string | submitted | true | Order's status
+
+### Responses
+
+Status Code | Description
+----------- | -----------
+404 | When order is not found.
+400 | When status is not valid.
+200 | When everything is OK.
