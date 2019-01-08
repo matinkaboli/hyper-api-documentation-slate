@@ -285,6 +285,26 @@
                   <li>
                     <a href="#follow-a-shop" class="toc-h2 toc-link" data-title="Follow a shop">Follow a shop</a>
                   </li>
+                  <li>
+                    <a href="#unfollow-a-shop" class="toc-h2 toc-link" data-title="Unfollow a shop">Unfollow a shop</a>
+                  </li>
+                  <li>
+                    <a href="#add-a-photo-for-a-shop" class="toc-h2 toc-link" data-title="Add a photo for a shop">Add a photo for a shop</a>
+                  </li>
+                  <li>
+                    <a href="#remove-a-photo-for-a-shop" class="toc-h2 toc-link" data-title="Remove a photo for a shop">Remove a photo for a shop</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#orders" class="toc-h1 toc-link" data-title="Orders">Orders</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-a-new-order" class="toc-h2 toc-link" data-title="Create a new order">Create a new order</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-status-of-an-order" class="toc-h2 toc-link" data-title="Update a status of an order">Update a status of an order</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -1221,8 +1241,7 @@ Remember — phone number must not have +98, 0098 or 09..
 </tr>
 </tbody></table>
 <h2 id='follow-a-shop'>Follow a shop</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://hyperserver.ir/v1/shops/:shopId/follow"</span> <span class="se">\</span>
-  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span> <span class="se">\</span>
-  -d <span class="s2">"name=newName"</span>
+  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -1264,10 +1283,358 @@ Remember — phone number must not have +98, 0098 or 09..
 </tr>
 <tr>
 <td>200</td>
-<td>When you have already followed thea shop.</td>
+<td>When you have already followed the shop.</td>
 </tr>
 <tr>
 <td>201</td>
+<td>When everything is OK.</td>
+</tr>
+</tbody></table>
+<h2 id='unfollow-a-shop'>Unfollow a shop</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://hyperserver.ir/v1/shops/:shopId/follow"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint let the user unfollow the specified shop.</p>
+<h3 id='http-request-17'>HTTP Request</h3>
+<p><code>DELETE http://hyperserver.ir/v1/shops/:shopId/follow</code></p>
+<h3 id='query-parameteres-6'>Query Parameteres</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>shopId</td>
+<td>string</td>
+<td>395746irfhjdhgf</td>
+<td>true</td>
+<td>Shop&#39;s id</td>
+</tr>
+</tbody></table>
+<h3 id='responses-17'>Responses</h3>
+<table><thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>When shop is not found.</td>
+</tr>
+<tr>
+<td>200</td>
+<td>When you have already unfollowed the shop.</td>
+</tr>
+<tr>
+<td>201</td>
+<td>When everything is OK.</td>
+</tr>
+</tbody></table>
+<h2 id='add-a-photo-for-a-shop'>Add a photo for a shop</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://hyperserver.ir/v1/shops/:shopId/photo"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint adds an image to the specified shop.</p>
+<h3 id='http-request-18'>HTTP Request</h3>
+<p><code>POST http://hyperserver.ir/v1/shops/:shopId/photo</code></p>
+<h3 id='query-parameteres-7'>Query Parameteres</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>shopId</td>
+<td>string</td>
+<td>395746irfhjdhgf</td>
+<td>true</td>
+<td>Shop&#39;s id</td>
+</tr>
+</tbody></table>
+<h3 id='body-parameters-12'>Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>photo</td>
+<td>file</td>
+<td>PNG file</td>
+<td>true</td>
+<td>Shop&#39;s photo</td>
+</tr>
+</tbody></table>
+<h3 id='responses-18'>Responses</h3>
+<table><thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>When shop is not found.</td>
+</tr>
+<tr>
+<td>201</td>
+<td>When everything is OK.</td>
+</tr>
+</tbody></table>
+<h2 id='remove-a-photo-for-a-shop'>Remove a photo for a shop</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://hyperserver.ir/v1/shops/:shopId/photo/:photoId"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint removes an image from the specified shop.</p>
+<h3 id='http-request-19'>HTTP Request</h3>
+<p><code>DELETE http://hyperserver.ir/v1/shops/:shopId/photo/:photoId</code></p>
+<h3 id='query-parameteres-8'>Query Parameteres</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>shopId</td>
+<td>string</td>
+<td>395746irfhjdhgf</td>
+<td>true</td>
+<td>Shop&#39;s id</td>
+</tr>
+<tr>
+<td>photoId</td>
+<td>string</td>
+<td>395746irfhjdhgf</td>
+<td>true</td>
+<td>Photo&#39;s id</td>
+</tr>
+</tbody></table>
+<h3 id='responses-19'>Responses</h3>
+<table><thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>When shop is not found.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>When photo is not found.</td>
+</tr>
+<tr>
+<td>200</td>
+<td>When everything is OK.</td>
+</tr>
+</tbody></table>
+<h1 id='orders'>Orders</h1><h2 id='create-a-new-order'>Create a new order</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://hyperserver.ir/v1/shops/:shopId/orders"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span> <span class="se">\</span>
+  -d <span class="s2">"name=newName"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a new order for the specified shop.</p>
+<h3 id='http-request-20'>HTTP Request</h3>
+<p><code>POST http://hyperserver.ir/v1/shops/:shopId/orders</code></p>
+<h3 id='query-parameteres-9'>Query Parameteres</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>shopId</td>
+<td>string</td>
+<td>395746irfhjdhgf</td>
+<td>true</td>
+<td>Shop&#39;s id</td>
+</tr>
+</tbody></table>
+<h3 id='body-parameters-13'>Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>lat</td>
+<td>float</td>
+<td>35.2</td>
+<td>true</td>
+<td>Order&#39;s latitude</td>
+</tr>
+<tr>
+<td>lng</td>
+<td>float</td>
+<td>50</td>
+<td>true</td>
+<td>Order&#39;s longtitude</td>
+</tr>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>Tomorrow</td>
+<td>true</td>
+<td>Order&#39;s time</td>
+</tr>
+<tr>
+<td>address</td>
+<td>string</td>
+<td>here</td>
+<td>true</td>
+<td>Order&#39;s address</td>
+</tr>
+<tr>
+<td>items</td>
+<td>JSON</td>
+<td><code>{ &quot;items&quot;: [{count: 5, showcase: &quot;khkghkf&quot;}, {}, {}] }</code></td>
+<td>true</td>
+<td>Order&#39;s items</td>
+</tr>
+</tbody></table>
+<h3 id='responses-20'>Responses</h3>
+<table><thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>When shop is not found.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>When a showcase ID is not found in the items property.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>User must follow the shop in order to create orders.</td>
+</tr>
+<tr>
+<td>201</td>
+<td>When everything is OK.</td>
+</tr>
+</tbody></table>
+<h2 id='update-a-status-of-an-order'>Update a status of an order</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://hyperserver.ir/v1/shops/:shopId/orders/:orderId/status"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span> <span class="se">\</span>
+  -d <span class="s2">"name=newName"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a new order for the specified shop.</p>
+<h3 id='http-request-21'>HTTP Request</h3>
+<p><code>PATCH http://hyperserver.ir/v1/shops/:shopId/orders/:orderId/status</code></p>
+<h3 id='query-parameteres-10'>Query Parameteres</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>shopId</td>
+<td>string</td>
+<td>395746irfhjdhgf</td>
+<td>true</td>
+<td>Shop&#39;s id</td>
+</tr>
+<tr>
+<td>orderId</td>
+<td>string</td>
+<td>395746irfhjdhgf</td>
+<td>true</td>
+<td>Order&#39;s id</td>
+</tr>
+</tbody></table>
+<h3 id='body-parameters-14'>Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>submitted</td>
+<td>true</td>
+<td>Order&#39;s status</td>
+</tr>
+</tbody></table>
+<h3 id='responses-21'>Responses</h3>
+<table><thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>When order is not found.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>When status is not valid.</td>
+</tr>
+<tr>
+<td>200</td>
 <td>When everything is OK.</td>
 </tr>
 </tbody></table>
