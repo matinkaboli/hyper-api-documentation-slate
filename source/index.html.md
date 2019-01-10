@@ -1006,3 +1006,92 @@ Status Code | Description
 404 | When shelf is not found.
 404 | When shop is not found.
 200 | When everything is OK.
+
+## Add a shelf and then move it to the shop (Direct Showcase)
+
+```shell
+curl "http://hyperserver.ir/v1/shops/:shopId/showcases/direct" \
+  -H "Authorization: Bearer meowmeowmeow" \
+  -d "name=newName"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+}
+```
+
+This endpoint creates a shelf and then quickly move it to the specified shop.
+
+### HTTP Request
+
+`POST http://hyperserver.ir/v1/shops/:shopId/showcases/direct`
+
+### Query Parameteres
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+shopId | string | 395746irfhjdhgf | true | Shop's id
+
+### Body Parameters
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+name | string | Mahsool | true | The shelf's name
+isbn | string | 123-456-789-0 | false | The shelf's ISBN
+expiration | string | 2 days from now | false | The shelf's expiration time
+description | string | One Product | false | The shelf's description
+manufacturer | string | Pegah | false | The shelf's manufacturer
+price | number | 2000 | false | The showcase's price.
+discountedPrice | number | 1500 | false | The showcase's discounted price.
+
+### Responses
+
+Status Code | Description
+----------- | -----------
+404 | When shop is not found.
+201 | When everything is OK.
+
+## Change the availability of a showcase
+
+```shell
+curl "http://hyperserver.ir/v1/shops/:shopId/showcases/:showcaseId/availability" \
+  -H "Authorization: Bearer meowmeowmeow" \
+  -d "name=newName"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+}
+```
+
+This endpoint changes the availablity of a showcase.
+
+### HTTP Request
+
+`POST http://hyperserver.ir/v1/shops/:shopId/showcases/:showcaseId/availability`
+
+### Query Parameteres
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+shopId | string | 395746irfhjdhgf | true | Shop's id
+showcaseId | string | 395746irfhjdhgf | true | Showcase's id
+
+### Body Parameters
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+available | boolean | true | true | The showcase's availability.
+
+### Responses
+
+Status Code | Description
+----------- | -----------
+404 | When shop is not found.
+404 | When showcase is not found.
+401 | When showcase does not have a price or discountedPrice OK.
+200 | When everything is OK.
