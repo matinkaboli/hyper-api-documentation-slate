@@ -836,3 +836,173 @@ Status Code | Description
 404 | When order is not found.
 400 | When status is not valid.
 200 | When everything is OK.
+
+# Showcases
+
+## Create a showcase
+
+```shell
+curl "http://hyperserver.ir/v1/shops/:shopId/showcases" \
+  -H "Authorization: Bearer meowmeowmeow" \
+  -d "name=newName"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+}
+```
+
+This endpoint creates a new showcase for the specified shop.
+
+### HTTP Request
+
+`POST http://hyperserver.ir/v1/shops/:shopId/showcases`
+
+### Query Parameteres
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+shopId | string | 395746irfhjdhgf | true | Shop's id
+
+### Body Parameters
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+price | number| 2000 | false | The price of the shelf.
+shelfId | string | 23947kdkgfkgh | true | Shelf ID.
+discountedPrice | number | 1500 | false | The discounted price of the shelf.
+
+### Responses
+
+Status Code | Description
+----------- | -----------
+404 | When shelf is not found.
+404 | When shop is not found.
+201 | When everything is OK.
+
+## Delete a showcase
+
+```shell
+curl "http://hyperserver.ir/v1/shops/:shopId/showcases/:showcaseId" \
+  -H "Authorization: Bearer meowmeowmeow" \
+  -d "name=newName"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+}
+```
+
+This endpoint deletes a showcase for the specified shop.
+
+### HTTP Request
+
+`DELETE http://hyperserver.ir/v1/shops/:shopId/showcases/:showcaseId`
+
+### Query Parameteres
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+shopId | string | 395746irfhjdhgf | true | Shop's id
+showcaseId | string | 395746irfhjdhgf | true | Showcase's id
+
+### Responses
+
+Status Code | Description
+----------- | -----------
+404 | When showcase is not found.
+404 | When shop is not found.
+200 | When everything is OK.
+
+## Update a showcase
+
+```shell
+curl "http://hyperserver.ir/v1/shops/:shopId/showcases/:showcaseId" \
+  -H "Authorization: Bearer meowmeowmeow" \
+  -d "name=newName"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+}
+```
+
+This endpoint updates a showcase for the specified shop.
+
+### HTTP Request
+
+`PATCH http://hyperserver.ir/v1/shops/:shopId/showcases/:showcaseId`
+
+### Query Parameteres
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+shopId | string | 395746irfhjdhgf | true | Shop's id
+showcaseId | string | 395746irfhjdhgf | true | Showcase's id
+
+### Body Parameters
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+price | number| 2000 | false | The price of the shelf.
+discountedPrice | number | 1500 | false | The discounted price of the shelf.
+name | string | Mahsool | true | The shelf's name
+isbn | string | 123-456-789-0 | false | The shelf's ISBN
+expiration | string | 2 days from now | false | The shelf's expiration time
+description | string | One Product | false | The shelf's description
+manufacturer | string | Pegah | false | The shelf's manufacturer
+
+### Responses
+
+Status Code | Description
+----------- | -----------
+404 | When shelf is not found.
+404 | When shop is not found.
+200 | When everything is OK.
+
+## Create multiple showcases
+
+```shell
+curl "http://hyperserver.ir/v1/shops/:shopId/showcases/multi" \
+  -H "Authorization: Bearer meowmeowmeow" \
+  -d "name=newName"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+}
+```
+
+This endpoint creates multiple showcases for the specified shop.
+
+### HTTP Request
+
+`POST http://hyperserver.ir/v1/shops/:shopId/showcases/multi`
+
+### Query Parameteres
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+shopId | string | 395746irfhjdhgf | true | Shop's id
+
+### Body Parameters
+
+Parameter | Type | Example | Required | Description
+--------- | ---- | ------- | -------- | -----------
+shelves | JSON | `{"shelves": [{ shelfId: "aaa", price: 200, discountedPrice: 100 }, {}]}` | true | Multiple shelves in JSON format
+
+### Responses
+
+Status Code | Description
+----------- | -----------
+404 | When shelf is not found.
+404 | When shop is not found.
+200 | When everything is OK.
