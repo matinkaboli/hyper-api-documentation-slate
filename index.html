@@ -308,6 +308,29 @@
               </ul>
           </li>
           <li>
+            <a href="#showcases" class="toc-h1 toc-link" data-title="Showcases">Showcases</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-a-showcase" class="toc-h2 toc-link" data-title="Create a showcase">Create a showcase</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-showcase" class="toc-h2 toc-link" data-title="Delete a showcase">Delete a showcase</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-showcase" class="toc-h2 toc-link" data-title="Update a showcase">Update a showcase</a>
+                  </li>
+                  <li>
+                    <a href="#create-multiple-showcases" class="toc-h2 toc-link" data-title="Create multiple showcases">Create multiple showcases</a>
+                  </li>
+                  <li>
+                    <a href="#add-a-shelf-and-then-move-it-to-the-shop-direct-showcase" class="toc-h2 toc-link" data-title="Add a shelf and then move it to the shop (Direct Showcase)">Add a shelf and then move it to the shop (Direct Showcase)</a>
+                  </li>
+                  <li>
+                    <a href="#change-the-availability-of-a-showcase" class="toc-h2 toc-link" data-title="Change the availability of a showcase">Change the availability of a showcase</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
       </ul>
@@ -1632,6 +1655,521 @@ Remember — phone number must not have +98, 0098 or 09..
 <tr>
 <td>400</td>
 <td>When status is not valid.</td>
+</tr>
+<tr>
+<td>200</td>
+<td>When everything is OK.</td>
+</tr>
+</tbody></table>
+<h1 id='showcases'>Showcases</h1><h2 id='create-a-showcase'>Create a showcase</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://hyperserver.ir/v1/shops/:shopId/showcases"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span> <span class="se">\</span>
+  -d <span class="s2">"name=newName"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a new showcase for the specified shop.</p>
+<h3 id='http-request-22'>HTTP Request</h3>
+<p><code>POST http://hyperserver.ir/v1/shops/:shopId/showcases</code></p>
+<h3 id='query-parameteres-11'>Query Parameteres</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>shopId</td>
+<td>string</td>
+<td>395746irfhjdhgf</td>
+<td>true</td>
+<td>Shop&#39;s id</td>
+</tr>
+</tbody></table>
+<h3 id='body-parameters-15'>Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>price</td>
+<td>number</td>
+<td>2000</td>
+<td>false</td>
+<td>The price of the shelf.</td>
+</tr>
+<tr>
+<td>shelfId</td>
+<td>string</td>
+<td>23947kdkgfkgh</td>
+<td>true</td>
+<td>Shelf ID.</td>
+</tr>
+<tr>
+<td>discountedPrice</td>
+<td>number</td>
+<td>1500</td>
+<td>false</td>
+<td>The discounted price of the shelf.</td>
+</tr>
+</tbody></table>
+<h3 id='responses-22'>Responses</h3>
+<table><thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>When shelf is not found.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>When shop is not found.</td>
+</tr>
+<tr>
+<td>201</td>
+<td>When everything is OK.</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-showcase'>Delete a showcase</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://hyperserver.ir/v1/shops/:shopId/showcases/:showcaseId"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span> <span class="se">\</span>
+  -d <span class="s2">"name=newName"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes a showcase for the specified shop.</p>
+<h3 id='http-request-23'>HTTP Request</h3>
+<p><code>DELETE http://hyperserver.ir/v1/shops/:shopId/showcases/:showcaseId</code></p>
+<h3 id='query-parameteres-12'>Query Parameteres</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>shopId</td>
+<td>string</td>
+<td>395746irfhjdhgf</td>
+<td>true</td>
+<td>Shop&#39;s id</td>
+</tr>
+<tr>
+<td>showcaseId</td>
+<td>string</td>
+<td>395746irfhjdhgf</td>
+<td>true</td>
+<td>Showcase&#39;s id</td>
+</tr>
+</tbody></table>
+<h3 id='responses-23'>Responses</h3>
+<table><thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>When showcase is not found.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>When shop is not found.</td>
+</tr>
+<tr>
+<td>200</td>
+<td>When everything is OK.</td>
+</tr>
+</tbody></table>
+<h2 id='update-a-showcase'>Update a showcase</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://hyperserver.ir/v1/shops/:shopId/showcases/:showcaseId"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span> <span class="se">\</span>
+  -d <span class="s2">"name=newName"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint updates a showcase for the specified shop.</p>
+<h3 id='http-request-24'>HTTP Request</h3>
+<p><code>PATCH http://hyperserver.ir/v1/shops/:shopId/showcases/:showcaseId</code></p>
+<h3 id='query-parameteres-13'>Query Parameteres</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>shopId</td>
+<td>string</td>
+<td>395746irfhjdhgf</td>
+<td>true</td>
+<td>Shop&#39;s id</td>
+</tr>
+<tr>
+<td>showcaseId</td>
+<td>string</td>
+<td>395746irfhjdhgf</td>
+<td>true</td>
+<td>Showcase&#39;s id</td>
+</tr>
+</tbody></table>
+<h3 id='body-parameters-16'>Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>price</td>
+<td>number</td>
+<td>2000</td>
+<td>false</td>
+<td>The price of the shelf.</td>
+</tr>
+<tr>
+<td>discountedPrice</td>
+<td>number</td>
+<td>1500</td>
+<td>false</td>
+<td>The discounted price of the shelf.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Mahsool</td>
+<td>true</td>
+<td>The shelf&#39;s name</td>
+</tr>
+<tr>
+<td>isbn</td>
+<td>string</td>
+<td>123-456-789-0</td>
+<td>false</td>
+<td>The shelf&#39;s ISBN</td>
+</tr>
+<tr>
+<td>expiration</td>
+<td>string</td>
+<td>2 days from now</td>
+<td>false</td>
+<td>The shelf&#39;s expiration time</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>One Product</td>
+<td>false</td>
+<td>The shelf&#39;s description</td>
+</tr>
+<tr>
+<td>manufacturer</td>
+<td>string</td>
+<td>Pegah</td>
+<td>false</td>
+<td>The shelf&#39;s manufacturer</td>
+</tr>
+</tbody></table>
+<h3 id='responses-24'>Responses</h3>
+<table><thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>When shelf is not found.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>When shop is not found.</td>
+</tr>
+<tr>
+<td>200</td>
+<td>When everything is OK.</td>
+</tr>
+</tbody></table>
+<h2 id='create-multiple-showcases'>Create multiple showcases</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://hyperserver.ir/v1/shops/:shopId/showcases/multi"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span> <span class="se">\</span>
+  -d <span class="s2">"name=newName"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates multiple showcases for the specified shop.</p>
+<h3 id='http-request-25'>HTTP Request</h3>
+<p><code>POST http://hyperserver.ir/v1/shops/:shopId/showcases/multi</code></p>
+<h3 id='query-parameteres-14'>Query Parameteres</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>shopId</td>
+<td>string</td>
+<td>395746irfhjdhgf</td>
+<td>true</td>
+<td>Shop&#39;s id</td>
+</tr>
+</tbody></table>
+<h3 id='body-parameters-17'>Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>shelves</td>
+<td>JSON</td>
+<td><code>{&quot;shelves&quot;: [{ shelfId: &quot;aaa&quot;, price: 200, discountedPrice: 100 }, {}]}</code></td>
+<td>true</td>
+<td>Multiple shelves in JSON format</td>
+</tr>
+</tbody></table>
+<h3 id='responses-25'>Responses</h3>
+<table><thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>When shelf is not found.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>When shop is not found.</td>
+</tr>
+<tr>
+<td>200</td>
+<td>When everything is OK.</td>
+</tr>
+</tbody></table>
+<h2 id='add-a-shelf-and-then-move-it-to-the-shop-direct-showcase'>Add a shelf and then move it to the shop (Direct Showcase)</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://hyperserver.ir/v1/shops/:shopId/showcases/direct"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span> <span class="se">\</span>
+  -d <span class="s2">"name=newName"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint creates a shelf and then quickly move it to the specified shop.</p>
+<h3 id='http-request-26'>HTTP Request</h3>
+<p><code>POST http://hyperserver.ir/v1/shops/:shopId/showcases/direct</code></p>
+<h3 id='query-parameteres-15'>Query Parameteres</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>shopId</td>
+<td>string</td>
+<td>395746irfhjdhgf</td>
+<td>true</td>
+<td>Shop&#39;s id</td>
+</tr>
+</tbody></table>
+<h3 id='body-parameters-18'>Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Mahsool</td>
+<td>true</td>
+<td>The shelf&#39;s name</td>
+</tr>
+<tr>
+<td>isbn</td>
+<td>string</td>
+<td>123-456-789-0</td>
+<td>false</td>
+<td>The shelf&#39;s ISBN</td>
+</tr>
+<tr>
+<td>expiration</td>
+<td>string</td>
+<td>2 days from now</td>
+<td>false</td>
+<td>The shelf&#39;s expiration time</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>One Product</td>
+<td>false</td>
+<td>The shelf&#39;s description</td>
+</tr>
+<tr>
+<td>manufacturer</td>
+<td>string</td>
+<td>Pegah</td>
+<td>false</td>
+<td>The shelf&#39;s manufacturer</td>
+</tr>
+<tr>
+<td>price</td>
+<td>number</td>
+<td>2000</td>
+<td>false</td>
+<td>The showcase&#39;s price.</td>
+</tr>
+<tr>
+<td>discountedPrice</td>
+<td>number</td>
+<td>1500</td>
+<td>false</td>
+<td>The showcase&#39;s discounted price.</td>
+</tr>
+</tbody></table>
+<h3 id='responses-26'>Responses</h3>
+<table><thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>When shop is not found.</td>
+</tr>
+<tr>
+<td>201</td>
+<td>When everything is OK.</td>
+</tr>
+</tbody></table>
+<h2 id='change-the-availability-of-a-showcase'>Change the availability of a showcase</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://hyperserver.ir/v1/shops/:shopId/showcases/:showcaseId/availability"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span> <span class="se">\</span>
+  -d <span class="s2">"name=newName"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint changes the availablity of a showcase.</p>
+<h3 id='http-request-27'>HTTP Request</h3>
+<p><code>POST http://hyperserver.ir/v1/shops/:shopId/showcases/:showcaseId/availability</code></p>
+<h3 id='query-parameteres-16'>Query Parameteres</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>shopId</td>
+<td>string</td>
+<td>395746irfhjdhgf</td>
+<td>true</td>
+<td>Shop&#39;s id</td>
+</tr>
+<tr>
+<td>showcaseId</td>
+<td>string</td>
+<td>395746irfhjdhgf</td>
+<td>true</td>
+<td>Showcase&#39;s id</td>
+</tr>
+</tbody></table>
+<h3 id='body-parameters-19'>Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>available</td>
+<td>boolean</td>
+<td>true</td>
+<td>true</td>
+<td>The showcase&#39;s availability.</td>
+</tr>
+</tbody></table>
+<h3 id='responses-27'>Responses</h3>
+<table><thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>When shop is not found.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>When showcase is not found.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>When showcase does not have a price or discountedPrice OK.</td>
 </tr>
 <tr>
 <td>200</td>
